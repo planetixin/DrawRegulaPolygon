@@ -13,12 +13,12 @@ struct Vec2
 };
 
 
-class HexMap : public olc::PixelGameEngine
+class DrawPolygon : public olc::PixelGameEngine
 {
 public:
-	HexMap()
+	DrawPolygon()
 	{
-		sAppName = "HexMap demo";
+		sAppName = "DrawPolygon demo";
 	}
 private:
 	float r = 10.0f;
@@ -35,18 +35,10 @@ private:
 			{-inr + coords.x, (radius * -0.5f) + coords.y},
 			{-inr + coords.x, (radius * 0.5f) + coords.y}
 		};
-		//cout << (sizeof(corners) / sizeof(*corners)) << endl;
-
 		for (int n = 0; n < 5; n++)
 		{
 			DrawLine(corners[n].x, corners[n].y, corners[n+1].x, corners[n+1].y, olc::WHITE);
 		}
-
-		/*DrawLine(corners[0].x, corners[0].y, corners[1].x, corners[1].y, olc::WHITE);
-		DrawLine(corners[1].x, corners[1].y, corners[2].x, corners[2].y, olc::WHITE);
-		DrawLine(corners[2].x, corners[2].y, corners[3].x, corners[3].y, olc::WHITE);
-		DrawLine(corners[3].x, corners[3].y, corners[4].x, corners[4].y, olc::WHITE);
-		DrawLine(corners[4].x, corners[4].y, corners[5].x, corners[5].y, olc::WHITE);*/
 		DrawLine(corners[5].x, corners[5].y, corners[0].x, corners[0].y, olc::WHITE);
 	}
 	void DrawRPoplygon(Vec2 coords, float radius, int N, float rot)
@@ -65,10 +57,6 @@ private:
 			DrawLine(corners[n].x, corners[n].y, corners[n + 1].x, corners[n +1].y, olc::WHITE);
 		}
 		DrawLine(corners[N-1].x, corners[N-1].y, corners[0].x, corners[0].y, olc::WHITE);
-
-		
-
-
 	}
 public:
 	bool OnUserCreate() override
@@ -109,7 +97,7 @@ public:
 
 int main()
 {
-	HexMap demo;
+	DrawPolygon demo;
 	if (demo.Construct(400, 400, 2, 2, false, true))
 	{
 		demo.Start();
