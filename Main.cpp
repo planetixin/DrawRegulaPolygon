@@ -44,19 +44,15 @@ private:
 	void DrawRPoplygon(Vec2 coords, float radius, int N, float rot)
 	{
 		float rotRad = rot * 3.14159265359/180;
-		Vec2* corners = new Vec2[N];
-
-
 		for (int n = 0; n < N; n++)
 		{
-			corners[n].x = radius * cos(2 * 3.14159265359 * n / N + rotRad) + coords.x;
-			corners[n].y = radius * sin(2 * 3.14159265359 * n / N + rotRad) + coords.y;
+			float x1 = radius * cos(2 * 3.14159265359 * n / N + rotRad) + coords.x;
+			float y1 = radius * sin(2 * 3.14159265359 * n / N + rotRad) + coords.y;
+			float x2 = radius * cos(2 * 3.14159265359 *	(n+1) / N + rotRad) + coords.x;
+			float y2 = radius * sin(2 * 3.14159265359 * (n+1) / N + rotRad) + coords.y;
+
+			DrawLine(x1, y1, x2, y2, olc::WHITE);
 		}
-		for (int n = 0; n < N-1; n++)
-		{
-			DrawLine(corners[n].x, corners[n].y, corners[n + 1].x, corners[n +1].y, olc::WHITE);
-		}
-		DrawLine(corners[N-1].x, corners[N-1].y, corners[0].x, corners[0].y, olc::WHITE);
 	}
 public:
 	bool OnUserCreate() override
