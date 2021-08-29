@@ -41,17 +41,30 @@ private:
 		}
 		DrawLine(corners[5].x, corners[5].y, corners[0].x, corners[0].y, olc::WHITE);
 	}
-	void DrawRPoplygon(Vec2 coords, float radius, int N, float rot)
+	void DrawRPolygon(Vec2 coords, float radius, int N, float rot, olc::Pixel col)
 	{
-		float rotRad = rot * 3.14159265359/180;
+		float rotRad = rot * M_PI/180;
 		for (int n = 0; n < N; n++)
 		{
-			float x1 = radius * cos(2 * 3.14159265359 * n / N + rotRad) + coords.x;
-			float y1 = radius * sin(2 * 3.14159265359 * n / N + rotRad) + coords.y;
-			float x2 = radius * cos(2 * 3.14159265359 *	(n+1) / N + rotRad) + coords.x;
-			float y2 = radius * sin(2 * 3.14159265359 * (n+1) / N + rotRad) + coords.y;
+			float x1 = radius * cos(2 * M_PI * n / N + rotRad) + coords.x;
+			float y1 = radius * sin(2 * M_PI * n / N + rotRad) + coords.y;
+			float x2 = radius * cos(2 * M_PI * (n+1) / N + rotRad) + coords.x;
+			float y2 = radius * sin(2 * M_PI * (n+1) / N + rotRad) + coords.y;
 
-			DrawLine(x1, y1, x2, y2, olc::WHITE);
+			DrawLine(x1, y1, x2, y2, col);
+		}
+	}
+	void FillRPolygon(Vec2 coords, float radius, int N, float rot, olc::Pixel col)
+	{
+		float rotRad = rot * M_PI / 180;
+		for (int n = 0; n < N; n++)
+		{
+			float x1 = radius * cos(2 * M_PI * n / N + rotRad) + coords.x;
+			float y1 = radius * sin(2 * M_PI * n / N + rotRad) + coords.y;
+			float x2 = radius * cos(2 * M_PI * (n + 1) / N + rotRad) + coords.x;
+			float y2 = radius * sin(2 * M_PI * (n + 1) / N + rotRad) + coords.y;
+
+			FillTriangle(x1, y1, x2, y2, coords.x, coords.y, col);
 		}
 	}
 public:
