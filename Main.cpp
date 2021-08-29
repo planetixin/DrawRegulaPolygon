@@ -97,8 +97,8 @@ public:
 			coords.x += 100 * fElapsedTime;
 		}*/
 		
-		FillRPoplygon(coords, 100, 6, 45, olc::Red);
-		DrawRPoplygon(coords, 100, 6, 45, olc::WHITE);
+		FillRPoplygon(coords, 100, 6, 0, olc::Red);
+		DrawRPoplygon(coords, 100, 6, 0, olc::WHITE);
 
 		return true;
 	}
